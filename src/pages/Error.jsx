@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import error from '../images/error_image.jpg'
 import { Link } from 'react-router-dom'
 
 const Error = () => {
