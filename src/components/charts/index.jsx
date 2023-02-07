@@ -1,2 +1,3 @@
 import PieChart from './PieChart'
-export { PieChart }
+import DonutChart from './DonutChart'
+export { PieChart, DonutChart }
