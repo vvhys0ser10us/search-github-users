@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../context/context'
-
+import { PieChart } from './charts'
+import styled from 'styled-components'
 const Repos = () => {
   const { gitRepos } = useGlobalContext()
 
@@ -22,7 +23,15 @@ const Repos = () => {
     .sort((a, b) => b.value - a.value)
     .slice(0, 5)
 
-  return <div>Repos</div>
+  return (
+    <section className="section">
+      <Wrapper className="section-center">
+        <PieChart data={data}></PieChart>
+      </Wrapper>
+    </section>
+  )
 }
+
+const Wrapper = styled.section``
 
 export default Repos
