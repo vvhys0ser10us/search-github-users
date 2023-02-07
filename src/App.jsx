@@ -1,12 +1,15 @@
 import { Dashboard, Login, Error } from './pages'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      <Dashboard></Dashboard>
-      <Login></Login>
-      <Error></Error>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </Router>
   )
 }
 
