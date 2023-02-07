@@ -1,5 +1,13 @@
+import { Dashboard, Login, Error } from './pages'
+
 function App() {
-  return <div className="App">Hello World</div>
+  return (
+    <div>
+      <Dashboard></Dashboard>
+      <Login></Login>
+      <Error></Error>
+    </div>
+  )
 }
 
 export default App
