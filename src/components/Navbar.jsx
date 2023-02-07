@@ -1,7 +1,10 @@
 import React from 'react'
+import { useGlobalContext } from '../context/context'
+useGlobalContext
 
 const Navbar = () => {
-  return <div>Navbar</div>
+  const testing = useGlobalContext()
+  return <div>{testing}</div>
 }
 
 export default Navbar
