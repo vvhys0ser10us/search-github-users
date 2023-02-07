@@ -1,5 +1,5 @@
 import Dashboard from './Dashboard'
-import Login from './login'
+import Login from './Login'
 import Error from './Error'
 
 export { Dashboard, Login, Error }
