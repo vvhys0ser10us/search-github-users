@@ -17,7 +17,7 @@ const PieChart = ({ data }) => {
   const chartConfigs = {
     type: 'pie2d', // The chart type
     width: '100%', // Width of the chart
-    height: '250', // Height of the chart
+    height: '350', // Height of the chart
     dataFormat: 'json', // Data type
     dataSource: {
       // Chart Configuration

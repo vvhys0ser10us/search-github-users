@@ -60,6 +60,28 @@ const Repos = () => {
   )
 }
 
-const Wrapper = styled.section``
+const Wrapper = styled.section`
+  display: grid;
+  gap: 2rem;
+  justify-items: center;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  div {
+    width: 100% !important;
+  }
+  .fusioncharts-container {
+    width: 100% !important;
+  }
+  svg {
+    width: 100% !important;
+    border-radius: var(--radius) !important;
+  }
+`
 
 export default Repos
