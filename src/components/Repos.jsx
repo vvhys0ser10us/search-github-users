@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from '../context/context'
-import { PieChart, DonutChart, ColumnChart } from './charts'
+import { PieChart, DonutChart, ColumnChart, BarChart } from './charts'
 import styled from 'styled-components'
 const Repos = () => {
   const { gitRepos } = useGlobalContext()
@@ -32,7 +32,7 @@ const Repos = () => {
     .map((item) => {
       return { label: item.label, value: item.stars }
     })
-  // stars and folks data
+  // stars and forks data
   let { stars, forks } = gitRepos.reduce(
     (total, item) => {
       const { stargazers_count, name, forks } = item
@@ -54,7 +54,7 @@ const Repos = () => {
         <PieChart data={barData}></PieChart>
         <ColumnChart data={stars}></ColumnChart>
         <DonutChart data={donutData}></DonutChart>
-        <div>bar</div>
+        <BarChart data={forks}></BarChart>
       </Wrapper>
     </section>
   )
