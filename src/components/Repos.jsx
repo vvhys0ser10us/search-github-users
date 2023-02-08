@@ -1,6 +1,6 @@
 import React from 'react'
 import { useGlobalContext } from '../context/context'
-import { PieChart, DonutChart } from './charts'
+import { PieChart, DonutChart, ColumnChart } from './charts'
 import styled from 'styled-components'
 const Repos = () => {
   const { gitRepos } = useGlobalContext()
@@ -20,7 +20,6 @@ const Repos = () => {
     return total
   }, {})
 
-  console.log(data)
   // top 5 used language
   let barData = Object.values(data)
     .sort((a, b) => b.value - a.value)
@@ -33,13 +32,27 @@ const Repos = () => {
     .map((item) => {
       return { label: item.label, value: item.stars }
     })
-  console.log(donutData)
+  // stars and folks data
+  let { stars, forks } = gitRepos.reduce(
+    (total, item) => {
+      const { stargazers_count, name, forks } = item
+      total.stars[stargazers_count] = { label: name, value: stargazers_count }
+      total.forks[forks] = { label: name, value: forks }
+      return total
+    },
+    {
+      stars: {},
+      forks: {},
+    }
+  )
 
+  stars = Object.values(stars).slice(-5).reverse()
+  forks = Object.values(forks).slice(-5).reverse()
   return (
     <section className="section">
       <Wrapper className="section-center">
         <PieChart data={barData}></PieChart>
-        <div>column</div>
+        <ColumnChart data={stars}></ColumnChart>
         <DonutChart data={donutData}></DonutChart>
         <div>bar</div>
       </Wrapper>
