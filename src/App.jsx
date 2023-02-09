@@ -6,9 +6,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <PrivateRoute>
-          <Route path="/" element={<Dashboard />} />
-        </PrivateRoute>
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="login" element={<Login />} />
         <Route path="*" element={<Error />} />
       </Routes>
