@@ -44,6 +44,7 @@ const ContextProvider = ({ children }) => {
       const res = await axios.get(`${baseURL}/users/${user}`)
       setGitUser(res.data)
       const { login, followers_url } = res.data
+
       await Promise.allSettled([
         axios(`${baseURL}/users/${login}/repos?per_page=100`),
         axios(`${followers_url}?per_page=100`),
