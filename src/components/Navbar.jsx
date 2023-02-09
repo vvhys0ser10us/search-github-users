@@ -6,17 +6,15 @@ const Navbar = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
     useAuth0()
 
-  const isUser = isAuthenticated && user
-
   return (
     <Wrapper>
-      {isUser && user.picture && <img src={user.picture} alt={user.name} />}
-      {isUser && user.name && (
+      {user?.picture && <img src={user.picture} alt={user.name} />}
+      {user?.name && (
         <h4>
           Welcome, <strong>{user.name.toUpperCase()}</strong>
         </h4>
       )}
-      {isUser ? (
+      {isAuthenticated ? (
         <button
           onClick={() => {
             logout({ returnTo: window.location.origin })
