@@ -43,13 +43,27 @@ const ContextProvider = ({ children }) => {
     try {
       const res = await axios.get(`${baseURL}/users/${user}`)
       setGitUser(res.data)
-      setLoading(false)
+      const { login, followers_url } = res.data
+      await Promise.allSettled([
+        axios(`${baseURL}/users/${login}/repos?per_page=100`),
+        axios(`${followers_url}?per_page=100`),
+      ]).then((results) => {
+        const [repos, followers] = results
+        const status = 'fulfilled'
+        if (repos.status === status) {
+          setGitRepos(repos.value.data)
+        }
+        if (followers.status === status) {
+          setGitFollowers(followers.value.data)
+        }
+      })
     } catch (error) {
-      if (error.response.status === 404) {
-        setError({ show: true, msg: 'user not found' })
-      }
-      setLoading(false)
+      setError({ show: true, msg: 'user not found' })
+      console.log(error)
     }
+
+    checkLimit()
+    setLoading(false)
   }
 
   return (
